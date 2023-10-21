@@ -18,7 +18,6 @@ function Cards() {
   const handlePageChange = (page) => {
     setPagina(page);
     window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll hacia arriba
- 
   };
 
   return (
@@ -27,7 +26,7 @@ function Cards() {
         {sortedJobs
           .slice((pagina - 1) * porpagina, pagina * porpagina)
           .map((empleo, index) => (
-            <div className="w-full sm:w-1/2 md:w-1/3 px-10 mb-4 mt-10" key={index}>
+            <div className="w-full sm:w-1/2 md:w-1/3 px-2 mb-4 mt-4" key={index}>
               <Card
                 fechadb={empleo.FechaDB}
                 content={empleo.content}
