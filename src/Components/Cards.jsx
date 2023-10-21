@@ -8,7 +8,7 @@ function Cards() {
   const jobs = useSelector(state => state.jobs);
 
   const [pagina, setPagina] = useState(1);
-  const [porpagina, setPorpagina] = useState(4);
+  const [porpagina, setPorpagina] = useState(6);
   const maximo = Math.ceil(jobs.length / porpagina);
 
   // Ordenar los trabajos por fecha de publicación (más recientes primero)
