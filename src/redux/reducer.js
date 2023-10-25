@@ -1,8 +1,9 @@
-import { GET_ALL_POST } from "./types";
+import { GET_ALL_POST, GET_CANDIDATES } from "./types";
 
 
 const initialState = {
-  jobs:[]
+  jobs:[],
+  candidates:[]
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -12,6 +13,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
           ...state,
           jobs: payload
         };
+        case GET_CANDIDATES:
+        return {
+          ...state,
+          candidates: payload
+        };
+
     default:
       return state;
   }

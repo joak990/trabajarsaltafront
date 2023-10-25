@@ -150,7 +150,7 @@ function Form() {
           </div>
           <div className="mb-4">
             <label htmlFor="salary" className="block font-bold mb-2">
-              Salario por día <span className='text-red-500 text-sm'>*obligatorio</span>
+          Expectativa Salarial <span className='text-red-500 text-sm'>*obligatorio</span>
             </label>
             <input
               name="salary"

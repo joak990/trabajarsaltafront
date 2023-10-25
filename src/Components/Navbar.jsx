@@ -18,19 +18,25 @@ const Navbar = () => {
     <nav className="bg-gray-800">
       <div className="container mx-auto px-4 py-2 flex items-center justify-between">
         <Link to="/" className="text-white text-lg font-bold ml-9">
-          Trabajar en Salta
+          Salta Emplea
         </Link>
         <div className="hidden sm:flex items-end justify-center gap-16">
-          <Link to="/" className="text-white text-lg font-bold">
-            Home
+          <Link to="/" className="text-white  text-sm font-bold">
+            Inicio
           </Link>
-          <Link to="/about" className="text-white text-lg font-bold">
+          <Link to="/about" className="text-white  text-sm font-bold">
             Acerca de Nosotros
           </Link>
-          <Link to="/form" className="text-white text-lg font-bold">
+          <Link to="/form-candidato" className="text-white  text-sm font-bold">
+           Quiero ser Candidato
+          </Link>
+          <Link to="/contrata" className="text-white  text-sm font-bold">
+            Contrata Candidatos
+          </Link>
+          <Link to="/form" className="text-white text-sm font-bold">
             Publica tu Anuncio
           </Link>
-          <Link to="/login" className="text-white text-lg font-bold" onClick={handleLogout}>
+          <Link to="/login" className="text-white  text-sm font-bold" onClick={handleLogout}>
             {localStorage.getItem('id') ? 'Cerrar Sesión' : 'Ingresar'}
           </Link>
         </div>
@@ -77,13 +83,19 @@ const Navbar = () => {
                 to="/about"
                 className="text-white text-base font-medium block hover:text-gray-300 ml-4"
               >
-                About
+                 Acerca de Nosotros
+              </Link>
+              <Link
+                to="/contrata"
+                className="text-white text-base font-medium block hover:text-gray-300 ml-4"
+              >
+              Contrata Candidatos
               </Link>
               <Link
                 to="/form"
                 className="text-white text-base font-medium block hover:text-gray-300 ml-4"
               >
-                publica!
+                publica tu anuncio
               </Link>
               <Link
                 to="/login"

@@ -18,12 +18,12 @@ function Home() {
   const [empleo, setEmpleo] = useState(); 
   return (
     <div>
-    <div className='flex items-start justify-start ml-24'> 
-      <h1 className=' text text-3xl '>Clasificados actuales</h1>
+    <div className='flex items-start justify-start  ml-24'> 
+
     </div>
-      <div className='flex items-center justify-around'> 
+      <div className='flex items-center justify-around '> 
       Empleos actuales : {empleos}
-      <div className=''> 
+      <div className='bg-blue-200'> 
       
       </div>
       </div>

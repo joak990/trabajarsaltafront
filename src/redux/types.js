@@ -1,1 +1,2 @@
 export const GET_ALL_POST = "GET_ALL_POST"
+export const GET_CANDIDATES = "GET_CANDIDATES"

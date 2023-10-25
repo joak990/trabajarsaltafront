@@ -28,7 +28,7 @@ function About() {
             <h2 className="text-xl font-bold mb-4">Búsqueda de trabajo 🔍</h2>
             <p className="text-gray-700">
               Si estás buscando trabajo en Salta, Capital, este es el lugar indicado.
-              encuentra oportunidades laborales que se ajusten a tus necesidades ademas contamos con una expectativa salarial diaria ante cada empleo y es obligación del empleador decir su salario. 📄💼💡
+              encuentra oportunidades laborales que se ajusten a tus necesidades ademas contamos con una expectativa salarial diaria ante cada empleo y es obligación del empleador decir una expectativa salarial. 📄💼💡
             </p>
           </div>
         </div>

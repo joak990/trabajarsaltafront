@@ -6,6 +6,8 @@ import Navbar from './Components/Navbar';
 import About from './views/About';
 import Form from './views/Form';
 import Login from './views/login';
+import Contrata from './views/Contrata';
+import Candidato from './views/Candidato';
 
 function App() {
   const location = useLocation();
@@ -15,6 +17,8 @@ function App() {
     <div className="App">
     {location.pathname !== "/login" && <Navbar />}
        <Routes>
+       <Route path="/form-candidato" element={<Candidato/>} />
+       <Route path="/contrata" element={<Contrata/>} />
        <Route path="/" element={<Home/>} />
        <Route path="/about" element={<About/>} />
        <Route path="/form" element={<Form/>} />

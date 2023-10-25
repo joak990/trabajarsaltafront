@@ -26,7 +26,7 @@ function Cards() {
         {sortedJobs
           .slice((pagina - 1) * porpagina, pagina * porpagina)
           .map((empleo, index) => (
-            <div className="w-full sm:w-1/2 md:w-1/3 px-2 mb-4 mt-4" key={index}>
+            <div className="w-[400px] sm:w-1/2 md:w-1/3 px-2 mb-4 mt-4" key={index}>
               <Card
                 fechadb={empleo.FechaDB}
                 content={empleo.content}

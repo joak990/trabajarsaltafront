@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { GET_ALL_POST } from './types';
+import { GET_ALL_POST, GET_CANDIDATES } from './types';
+import Swal from 'sweetalert2';
+
 export const postjob = (payload) => {
 
     return async function () {
@@ -17,6 +19,36 @@ export const postjob = (payload) => {
     };
     
   };
+  export const candidatecreate = (payload) => {
+    return async function () {
+      try {
+        console.log(payload);
+        const response = await axios.post("https://trabajarsaltaback.vercel.app/candidate", payload);
+        console.log(response);
+  
+        if (response.data === false) {
+          Swal.fire({
+            icon: 'info',
+            title: 'Ya has publicado',
+            text: 'Espera 24 horas para volver a publicar.',
+          });
+        }else{
+          if (response.data === true) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Publicado con Exito!',
+              text: 'Recuerda que en 24hs podras volver a hacerlo.',
+            });
+          }
+        }
+      } 
+      catch (error) {
+        // Manejo de errores
+      }
+    };
+  };
+  
+  
 
   export const register_google = (payload) => {
 
@@ -52,3 +84,18 @@ export const postjob = (payload) => {
     };
   };
   
+
+  export const getcandidates = () => {
+    return async function (dispatch) {
+      try {
+        const json = await axios.get("http://localhost:3001/getcandidates");
+  
+        return dispatch({
+          type: GET_CANDIDATES,
+          payload: json.data,
+        });
+      } catch (error) {
+       
+      }
+    };
+  };
