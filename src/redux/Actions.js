@@ -7,7 +7,7 @@ export const postjob = (payload) => {
     return async function () {
       try {
       console.log(payload);
-        const response = await axios.post("http://localhost:3001/createpost", payload)
+        const response = await axios.post("https://trabajarsaltaback.vercel.app/createpost", payload)
         
         console.log(response);
         if (response.data === false) {
@@ -34,7 +34,7 @@ export const postjob = (payload) => {
     return async function () {
       try {
         console.log(payload);
-        const response = await axios.post("http://localhost:3001/candidate", payload);
+        const response = await axios.post("https://trabajarsaltaback.vercel.app/candidate", payload);
         console.log(response);
   
         if (response.data === false) {
@@ -99,7 +99,7 @@ export const postjob = (payload) => {
   export const getcandidates = () => {
     return async function (dispatch) {
       try {
-        const json = await axios.get("http://localhost:3001/getcandidates");
+        const json = await axios.get("https://trabajarsaltaback.vercel.app/getcandidates");
   
         return dispatch({
           type: GET_CANDIDATES,
