@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Card from './Card';
-import { useSelector } from 'react-redux';
 import Paginado from './Paginate';
-import { compareAsc } from 'date-fns';
 import CardContrata from './CardContrata';
-function CardsContrata() {
-  const candidates = useSelector(state => state.candidates);
+import { useSelector } from 'react-redux';
+import { compareAsc } from 'date-fns';
 
+function CardsContrata({ filter }) {
+  const candidates = useSelector(state => state.candidates);
   const [pagina, setPagina] = useState(1);
   const [porpagina, setPorpagina] = useState(6);
   const maximo = Math.ceil(candidates?.length / porpagina);
@@ -14,6 +14,11 @@ function CardsContrata() {
   // Ordenar los trabajos por fecha de publicación (más recientes primero)
   const sortedCandidatos = candidates?.sort((a, b) =>
     compareAsc(new Date(b.FechaPublicacion), new Date(a.FechaPublicacion))
+  );
+
+  // Filtrar los candidatos por la categoría seleccionada
+  const candidatosFiltrados = sortedCandidatos?.filter(candidato =>
+    filter ? candidato.sector === filter : true
   );
 
   // Función para manejar el cambio de página
@@ -24,11 +29,11 @@ function CardsContrata() {
 
   return (
     <div>
-      <div className="flex flex-col md:justify-center items-center"> {/* Agregar 'items-center' para centrar verticalmente */}
-        {candidates
+      <div className="flex flex-col md:justify-center items-center">
+        {candidatosFiltrados
           ?.slice((pagina - 1) * porpagina, pagina * porpagina)
           ?.map((candidato, index) => (
-            <div className="w-[200px] h-[300px] sm:w-1/2 px-2 mb-4 mt-4 mx-auto" key={index}> {/* Agregar 'mx-auto' para centrar horizontalmente */}
+            <div className="w-[200px] h-[300px] sm:w-1/2 px-2 mb-4 mt-4 mx-auto" key={index}>
               <CardContrata
                 name={candidato.name}
                 city={candidato.city}
@@ -40,13 +45,12 @@ function CardsContrata() {
           ))}
       </div>
       <Paginado
-        totalItems={candidates?.length}
+        totalItems={candidatosFiltrados?.length}
         itemsPerPage={porpagina}
         onPageChange={handlePageChange}
       />
     </div>
   );
 }
-
 
 export default CardsContrata;

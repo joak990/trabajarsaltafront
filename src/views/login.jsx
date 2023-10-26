@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
@@ -14,11 +14,34 @@ import {
 import Swal from 'sweetalert2';
 import { register_google } from '../redux/Actions';
 
-function Login() {
+function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const provider = new GoogleAuthProvider();
   const firebaseAuth = getAuth(app);
+
+  const [sphereGradient, setSphereGradient] = useState('linear-gradient(45deg, #FF5733, #33FF57, #5733FF)');
+  const gradients = [
+    'linear-gradient(45deg, #FF3366, #6633FF, #33FF99)',
+    // Agrega más gradientes aquí
+  ];
+
+  useEffect(() => {
+    let gradientIndex = 0;
+
+    const gradientChangeInterval = setInterval(() => {
+      if (gradientIndex >= gradients.length) {
+        gradientIndex = 0;
+      }
+      const currentGradient = gradients[gradientIndex];
+      setSphereGradient(currentGradient);
+      gradientIndex++;
+    }, 2000);
+
+    return () => {
+      clearInterval(gradientChangeInterval);
+    };
+  }, []);
 
   const handleLogin = async () => {
     await setPersistence(firebaseAuth, browserSessionPersistence);
@@ -49,19 +72,28 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-300">
-      <h1 className="text-4xl font-bold text-center mb-4">Trabajar Salta</h1>
-      <p className="text-xl text-center mb-4">Trabajo 100% seguro con regulación de salarios</p>
-      <button
-        onClick={handleLogin}
-        className="bg-blue-500 text-white py-3 px-6 rounded-lg flex items-center space-x-2 hover:bg-blue-600"
-      >
-        <FaGoogle className="text-2xl" />
-        <span>Iniciar sesión con Google</span>
-      </button>
-      <p className="mt-4">Inicia sesión para crear tu anuncio.</p>
+    <div className="flex flex-col items-center justify-center h-screen bg-blue-200">
+      <div className="w-1/2 md:flex md:items-center md:justify-center">
+        {/* Esfera animada */}
+        <div
+          className="w-40 h-40 rounded-full shadow-2xl animate-bounce md:hidden"
+          style={{ backgroundImage: sphereGradient }}
+        ></div>
+      </div>
+      <div className="w-1/2 p-8 text-center">
+        <h1 className="text-4xl font-bold text-center mb-4">Salta Emplea</h1>
+        <p className="text-xl font-semibold text-center mb-4">Tu plataforma laboral digital en Salta.</p>
+        <p className="mt-4 font-semibold ">Inicia sesión para promocionarte como candidato o publicar tu oferta laboral.</p>
+        <button
+          onClick={handleLogin}
+          className="bg-blue-500 text-white w-40 py-3 px-6 rounded-lg flex items-center space-x-2 hover:bg-blue-600"
+        >
+          <FaGoogle className="text-2xl" />
+          <span>Iniciar sesión con Google</span>
+        </button>
+      </div>
     </div>
   );
 }
 
-export default Login;
+export default Home;

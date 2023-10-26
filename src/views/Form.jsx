@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { postjob } from '../redux/Actions';
 import Swal from 'sweetalert2';
+import PhoneInput from 'react-phone-number-input';
 
+import 'react-phone-number-input/style.css';
 function Form() {
  
   useEffect(() => {
@@ -103,7 +105,7 @@ function Form() {
       } else {
         // Si hay un 'id' en el localStorage, enviar el formulario
         dispatch(postjob(form));
-        navigate('/');
+      
       }
     }
   };
@@ -135,13 +137,13 @@ function Form() {
             <label htmlFor="telefono" className="block font-bold mb-2">
               Teléfono de contacto <span className='text-red-500 text-sm'>*obligatorio</span>
             </label>
-            <input
+            <PhoneInput
+              international
+              defaultCountry="AR"
               name="phone"
-              type="number"
-              id="telefono"
               value={form.phone}
-              onChange={handleEmailTelefonoChange}
-              className={`w-full border rounded-md py-2 px-3 ${errors && 'border-red-500'}`}
+              onChange={(value) => setForm({ ...form, phone: value })}
+              className={`w-full border rounded-md py-2 px-3 ${salaryError && 'border-red-500'}`}
             />
             {errors && <p className="text-red-500">{errors}</p>}
             <p className="text-sm text-gray-500">

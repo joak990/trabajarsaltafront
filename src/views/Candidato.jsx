@@ -8,7 +8,7 @@ import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 function Candidato() {
   const user = localStorage.getItem("id")
-  console.log(user);
+  console.log();
   const [form, setForm] = useState({
     user: user,
     name: '',
@@ -17,6 +17,7 @@ function Candidato() {
     curriculum: null,
     phone: '',
     salary: '',
+    sector: ''
      // Agrega un nuevo estado para el enlace del PDF
   });
 
@@ -187,6 +188,24 @@ function Candidato() {
             </p>
             {salaryError && <p className="text-red-500">{salaryError}</p>}
           </div>
+          <div className="mb-4">
+  <label htmlFor="sector" className="block font-bold mb-2">
+    Elige tu sector <span className="text-red-500 text-sm">*</span>
+  </label>
+  <select
+    name="sector"
+    value={form.sector}
+    onChange={(e) => setForm({ ...form, sector: e.target.value })}
+    className="w-full border rounded-md py-2 px-3"
+  >
+    <option value="">Selecciona tu sector</option>
+    <option value="Comercio">Comercio</option>
+    <option value="Construcción">Construcción</option>
+    <option value="Educación">Educación</option>
+    <option value="Hotelería">Hotelería</option>
+    <option value="Agricultura">Agricultura</option>
+  </select>
+</div>
           <div className="mb-4">
             <label htmlFor="curriculum" className="block font-bold mb-2">
               Link de tu curriculum en la nube  <span className="text-red-500 text-sm">*</span>

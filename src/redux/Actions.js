@@ -7,10 +7,21 @@ export const postjob = (payload) => {
     return async function () {
       try {
       console.log(payload);
-        const response = await axios.post("https://trabajarsaltaback.vercel.app/createpost", payload)
+        const response = await axios.post("http://localhost:3001/createpost", payload)
         
         console.log(response);
-  
+        if (response.data === false) {
+          Swal.fire({
+            icon: 'info',
+            title: 'Ya has publicado',
+            text: 'Espera 24 horas para volver a publicar.',
+          })}else{
+            Swal.fire({
+              icon: 'success',
+              title: 'Anuncio Publicado con exíto',
+              text: 'Espera 24 horas para volver a publicar.',
+            })
+          }
       } catch (error) {
         // Error en la petición
         console.error(error);
@@ -23,7 +34,7 @@ export const postjob = (payload) => {
     return async function () {
       try {
         console.log(payload);
-        const response = await axios.post("https://trabajarsaltaback.vercel.app/candidate", payload);
+        const response = await axios.post("http://localhost:3001/candidate", payload);
         console.log(response);
   
         if (response.data === false) {
