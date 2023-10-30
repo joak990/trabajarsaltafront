@@ -40,6 +40,7 @@ function CardsContrata({ filter }) {
                 description={candidato.description}
                 phone={candidato.phone}
                 curriculum={candidato.curriculum}
+                userid={candidato.user}
               />
             </div>
           ))}

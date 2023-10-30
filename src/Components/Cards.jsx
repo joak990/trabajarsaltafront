@@ -32,7 +32,8 @@ function Cards() {
                 content={empleo.content}
                 phone={empleo.phone}
                 salary={empleo.salary}
-                name={empleo.user.name}
+                name={empleo.user?.name}
+                userid={empleo.user}
               />
             </div>
           ))}

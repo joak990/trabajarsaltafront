@@ -21,61 +21,67 @@ function MyMessages() {
     dispatch(getmyprivatechat({ userId1: id, userId2: userId }));
   };
   const [message, setMessage] = useState('');
-  // Obtener mensajes del chat seleccionado desde el estado de Redux
+
   const selectedChatMessages = useSelector((state) => state.getprivatechat);
   const handleSendMessage = (userId) => {
     if (message.trim() !== '') {
       const data = {
         senderId: id,
-        receiverId: receiverId, // Asegúrate de que esto sea el ID correcto del chat seleccionado
+        receiverId: receiverId, 
         content: message,
         name: name
       };
       console.log(data);
       dispatch(sendMessage(data));
       setContents([...contents, message]);
-      setMessage(''); // Limpiamos el campo de mensaje después de enviar
+      setMessage(''); 
     }
   };
 
   return (
     <div className="md:flex "> {/* Utilizamos "md:flex" para aplicar flexbox solo en tamaños de pantalla medianos y más grandes */}
       {/* Lista de chats (nombres de usuarios) en el costado */}
-      <div className="w-full md:w-1/4   border-r border-gray-300">
-        <h2 className="text-xl  font-semibold p-4">Chats</h2>
+      <div className="w-full md:w-1/4   border-r bg-gray-700 border-gray-300">
+        <h2 className="text-xl  font-semibold  text-white p-4">Chats</h2>
         <ul>
           <li
-            className={`py-2 px-4 hover:bg-gray-100 cursor-pointer ${
+            className={`py-2 px-4 hover:bg-gray-10 text-white cursor-pointer ${
               selectedChat === null ? 'font-semibold' : ''
             }`}
             onClick={() => handleChatClick(null)}
           >
-            Ve tus mensajes entrantes
+           
           </li>
           {chats?.map((chat) => (
             <li
               key={chat?.userId}
-              className={`py-2 px-4 hover:bg-gray-100 cursor-pointer mt-2 font-semibold ${
+              className={`py-2 px-4 hover:bg-gray-600  text-white  cursor-pointer mt-2 font-semibold ${
                 selectedChat === chat.userId ? 'font-semibold' : ''
               }`}
               onClick={() => handleChatClick(chat?.userId)}
             >
               {chat?.name}
+              {chat?.status === true  &&(
+                <span className='inline-block h-2 w-2 bg-green-500 rounded-full ml-2'></span>
+              )}
+               {chat?.status === false  &&(
+                <span className='inline-block h-2 w-2 bg-gray-500 rounded-full ml-2'></span>
+              )}
             </li>
           ))}
         </ul>
       </div>
 
       {/* Ventana de chat */}
-      <div className="w-full md:w-3/4 p-4">
-        <div className="text-gray-500 md:mt-44 text-center"> {/* Utilizamos "md:mt-44" para aplicar margen superior solo en tamaños de pantalla medianos y más grandes */}
+      <div className="w-full md:w-3/4 p-4 bg-gray-200">
+        <div className="text-gray-500 md:h-[200px] text-center"> {/* Utilizamos "md:mt-44" para aplicar margen superior solo en tamaños de pantalla medianos y más grandes */}
           {selectedChat === null
             ? 'Ve tus mensajes entrantes'
-            : 'Selecciona un chat para comenzar'}
+            : ""}
         </div>
 
         {/* Contenido del chat (Mensajes) */}
-        <div className="border md:mt-20 border-gray-300 p-4" style={{ maxHeight: '60vh', overflowY: 'auto' }}>
+        <div className="border md:mt-20 border-gray-30  p-4" style={{ maxHeight: '60vh', overflowY: 'auto' }}>
           {selectedChatMessages && selectedChatMessages.length > 0 ? (
             selectedChatMessages.map((message, index) => (
               <div

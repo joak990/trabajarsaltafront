@@ -11,29 +11,37 @@ import Candidato from './views/Candidato';
 import MyMessages from './views/MyMessages';
 import { useIdleTimer } from 'react-idle-timer/legacy'
 import { useEffect, useState } from 'react';
-import { setActiveState } from './redux/Actions';
+import { changestatus } from './redux/Actions';
 import { useDispatch } from 'react-redux';
 
 
 function App() {
   const location = useLocation();
+  const myId = localStorage?.getItem("id")
   const [isActive, setIsActive] = useState(true);
 const dispatch = useDispatch()
   const handleOnIdle = (event) => {
     console.log('Usuario inactivo');
-    dispatch(setActiveState(false))
+    const data = {
+      idUser:myId, 
+      status:false}
+    dispatch(changestatus(data))
+  
   };
 
   const handleOnActive = (event) => {
     console.log('Usuario activo');
-    dispatch(setActiveState(true))
+    const data = {
+      idUser:myId, 
+      status:true}
+    dispatch(changestatus(data))
   };
 
   useEffect(() => {
     setIsActive(true);
   }, []);
   const { reset, pause, resume } = useIdleTimer({
-    timeout: 4000, // 1 minuto en milisegundos
+    timeout: 10000, // 1 minuto en milisegundos
     onIdle: handleOnIdle,
     onActive: handleOnActive,
   });
