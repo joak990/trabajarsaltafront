@@ -3,3 +3,4 @@ export const GET_CANDIDATES = "GET_CANDIDATES"
 export const GET_CHATS = "GET_CHATS"
 export const GET_MY_PRIVATE_CHAT = "GET_MY_PRIVATE_CHAT"
 export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const SET_ACTIVE_STATE = 'SET_ACTIVE_STATE';

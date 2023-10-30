@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ADD_MESSAGE, GET_ALL_POST, GET_CANDIDATES, GET_CHATS, GET_MY_PRIVATE_CHAT } from './types';
+import { ADD_MESSAGE, GET_ALL_POST, GET_CANDIDATES, GET_CHATS, GET_MY_PRIVATE_CHAT, SET_ACTIVE_STATE } from './types';
 import Swal from 'sweetalert2';
 
 export const postjob = (payload) => {
@@ -182,3 +182,10 @@ export const postjob = (payload) => {
       }
     };
   };
+
+
+  export const setActiveState = (isActive) => ({
+  
+    type: SET_ACTIVE_STATE,
+    isActive,
+});

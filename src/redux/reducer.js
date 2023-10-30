@@ -1,10 +1,11 @@
-import { GET_ALL_POST, GET_CANDIDATES, GET_CHATS, GET_MY_PRIVATE_CHAT, ADD_MESSAGE } from "./types"; // Asegúrate de importar ADD_MESSAGE
+import { GET_ALL_POST, GET_CANDIDATES, GET_CHATS, GET_MY_PRIVATE_CHAT, ADD_MESSAGE, SET_ACTIVE_STATE } from "./types"; // Asegúrate de importar ADD_MESSAGE
 
 const initialState = {
   jobs: [],
   candidates: [],
   getchats: [],
-  getprivatechat: [], // Inicializamos el arreglo de mensajes vacío
+  getprivatechat: [], 
+  isActive:[] // Inicializamos el arreglo de mensajes vacío
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -33,6 +34,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         getprivatechat: [...state.getprivatechat, payload], // Agregamos el nuevo mensaje al arreglo de mensajes
+      };
+      case SET_ACTIVE_STATE:
+      return {
+        ...state,
+        isActive: payload,
       };
 
     default:

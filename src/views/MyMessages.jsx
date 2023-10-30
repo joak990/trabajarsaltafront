@@ -39,10 +39,10 @@ function MyMessages() {
   };
 
   return (
-    <div className="md:flex"> {/* Utilizamos "md:flex" para aplicar flexbox solo en tamaños de pantalla medianos y más grandes */}
+    <div className="md:flex "> {/* Utilizamos "md:flex" para aplicar flexbox solo en tamaños de pantalla medianos y más grandes */}
       {/* Lista de chats (nombres de usuarios) en el costado */}
-      <div className="w-full md:w-1/4 border-r border-gray-300">
-        <h2 className="text-xl font-semibold p-4">Chats</h2>
+      <div className="w-full md:w-1/4   border-r border-gray-300">
+        <h2 className="text-xl  font-semibold p-4">Chats</h2>
         <ul>
           <li
             className={`py-2 px-4 hover:bg-gray-100 cursor-pointer ${
@@ -55,7 +55,7 @@ function MyMessages() {
           {chats?.map((chat) => (
             <li
               key={chat?.userId}
-              className={`py-2 px-4 hover:bg-gray-100 cursor-pointer mt-2 font-bold ${
+              className={`py-2 px-4 hover:bg-gray-100 cursor-pointer mt-2 font-semibold ${
                 selectedChat === chat.userId ? 'font-semibold' : ''
               }`}
               onClick={() => handleChatClick(chat?.userId)}
