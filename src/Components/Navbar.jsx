@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaEnvelope } from 'react-icons/fa'; // Importa el icono de mensajes
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,7 @@ const Navbar = () => {
             Acerca de Nosotros
           </Link>
           <Link to="/form-candidato" className="text-white  text-sm font-bold">
-           Quiero ser Candidato
+            Quiero ser Candidato
           </Link>
           <Link to="/contrata" className="text-white  text-sm font-bold">
             Contrata Candidatos
@@ -39,6 +40,13 @@ const Navbar = () => {
           <Link to="/login" className="text-white  text-sm font-bold" onClick={handleLogout}>
             {localStorage.getItem('id') ? 'Cerrar Sesión' : 'Ingresar'}
           </Link>
+          {/* Agregar el icono de mensajes si existe el 'id' en el localStorage */}
+          {localStorage.getItem('id') && (
+            <Link to="/mymessages" className="text-white text-sm font-bold flex items-center">
+              <FaEnvelope size={20} className="mr-2" />
+              Mensajes
+            </Link>
+          )}
         </div>
       </div>
 
@@ -95,7 +103,7 @@ const Navbar = () => {
                 to="/form"
                 className="text-white text-base font-medium block hover:text-gray-300 ml-4"
               >
-                publica tu anuncio
+                Publica tu Anuncio
               </Link>
               <Link
                 to="/login"
@@ -104,6 +112,12 @@ const Navbar = () => {
               >
                 {localStorage.getItem('id') ? 'Cerrar Sesión' : 'Ingresar'}
               </Link>
+              {localStorage.getItem('id') && (
+                <Link to="/mymessages" className="text-white text-base font-medium block hover:text-gray-300 ml-4">
+                  
+                  <FaEnvelope size={20} className="ml-32" />
+                </Link>
+              )}
             </div>
           )}
         </div>

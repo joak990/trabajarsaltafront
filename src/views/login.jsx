@@ -67,6 +67,7 @@ function Home() {
       } else {
         navigate('/form');
         localStorage.setItem('id', response._id);
+        localStorage.setItem('name', response.name);
       }
     });
   };
