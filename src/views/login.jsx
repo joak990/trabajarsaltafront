@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaGoogle } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
-import { app } from '../firebase';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { app } from "../firebase";
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   setPersistence,
   browserSessionPersistence,
-} from 'firebase/auth';
+} from "firebase/auth";
 
-import Swal from 'sweetalert2';
-import { register_google } from '../redux/Actions';
+import Swal from "sweetalert2";
+import { register_google } from "../redux/Actions";
 
 function Home() {
   const navigate = useNavigate();
@@ -20,9 +20,11 @@ function Home() {
   const provider = new GoogleAuthProvider();
   const firebaseAuth = getAuth(app);
 
-  const [sphereGradient, setSphereGradient] = useState('linear-gradient(45deg, #FF5733, #33FF57, #5733FF)');
+  const [sphereGradient, setSphereGradient] = useState(
+    "linear-gradient(45deg, #FF5733, #33FF57, #5733FF)"
+  );
   const gradients = [
-    'linear-gradient(45deg, #FF3366, #6633FF, #33FF99)',
+    "linear-gradient(45deg, #FF3366, #6633FF, #33FF99)",
     // Agrega más gradientes aquí
   ];
 
@@ -57,17 +59,17 @@ function Home() {
       console.log(response);
       if (response === false) {
         Swal.fire({
-          title: 'Usuario bloqueado',
-          icon: 'error',
+          title: "Usuario bloqueado",
+          icon: "error",
           buttonsStyling: false,
           customClass: {
-            confirmButton: 'bg-orange-600 text-white rounded-md px-4 py-2',
+            confirmButton: "bg-orange-600 text-white rounded-md px-4 py-2",
           },
         });
       } else {
-        navigate('/form');
-        localStorage.setItem('id', response._id);
-        localStorage.setItem('name', response.name);
+        navigate("/form");
+        localStorage.setItem("id", response._id);
+        localStorage.setItem("name", response.name);
       }
     });
   };
@@ -82,16 +84,23 @@ function Home() {
         ></div>
       </div>
       <div className="w-1/2 p-8 text-center">
-        <h1 className="text-4xl font-bold text-center mb-4">Salta Emplea</h1>
-        <p className="text-xl font-semibold text-center mb-4">Tu plataforma laboral digital en Salta.</p>
-        <p className="mt-4 font-semibold ">Inicia sesión para promocionarte como candidato o publicar tu oferta laboral.</p>
-        <button
-          onClick={handleLogin}
-          className="bg-blue-500 text-white w-40 py-3 px-6 rounded-lg flex items-center space-x-2 hover:bg-blue-600"
-        >
-          <FaGoogle className="text-2xl" />
-          <span>Iniciar sesión con Google</span>
-        </button>
+        <h1 className="text-4xl font-bold mb-4">Salta Emplea</h1>
+        <p className="text-xl font-semibold mb-4">
+          Tu plataforma laboral digital en Salta.
+        </p>
+        <p className="mt-4 font-semibold">
+          Inicia sesión para promocionarte como candidato o publicar tu oferta
+          laboral.
+        </p>
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={handleLogin}
+            className="bg-blue-500 text-white w-40 py-3 px-6 rounded-lg flex items-center space-x-2 hover:bg-blue-600"
+          >
+            <FaGoogle className="text-2xl" />
+            <span>Iniciar sesión con Google</span>
+          </button>
+        </div>
       </div>
     </div>
   );
