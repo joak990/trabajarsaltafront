@@ -105,6 +105,9 @@ const Navbar = () => {
               >
                 Publica tu Anuncio
               </Link>
+              <Link to="/form-candidato" className="text-white  text-sm font-bold">
+            Quiero ser Candidato
+          </Link>
               <Link
                 to="/login"
                 className="text-white text-base font-medium block hover:text-gray-300 ml-4"
