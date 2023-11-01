@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaEnvelope } from 'react-icons/fa'; // Importa el icono de mensajes
-
+import logo from "../views/logo salta emplea.jpg"
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -18,8 +18,11 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800">
       <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-        <Link to="/" className="text-white text-lg font-bold ml-9">
-          Salta Emplea
+        <Link to="/" className="text-white text-lg  flex font-bold ml-9">
+        <div className="text-white text-lg flex font-bold items-center ml-9">
+  <img className="w-10 h-10" src={logo} alt="" />
+  <span className='ml-2'>Salta Emplea</span>
+</div>
         </Link>
         <div className="hidden sm:flex items-end justify-center gap-16">
           <Link to="/" className="text-white  text-sm font-bold">

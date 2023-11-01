@@ -8,7 +8,7 @@ import { compareAsc } from 'date-fns';
 function CardsContrata({ filter }) {
   const candidates = useSelector(state => state.candidates);
   const [pagina, setPagina] = useState(1);
-  const [porpagina, setPorpagina] = useState(6);
+  const [porpagina, setPorpagina] = useState(10);
   const maximo = Math.ceil(candidates?.length / porpagina);
 
   // Ordenar los trabajos por fecha de publicación (más recientes primero)

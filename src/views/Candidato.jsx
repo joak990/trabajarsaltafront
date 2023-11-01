@@ -140,7 +140,7 @@ function Candidato() {
   return (
     <div className="bg-blue-100 min-h-screen">
       <div className="container mx-auto p-8">
-        <h1 className="text-2xl font-bold text-center mt-8 mb-4">
+        <h1 className="text-2xl font-bold font-mono text-center mt-8 mb-4">
           ¡¿Quieres ser visible en nuestra plataforma? ¿Buscas trabajo? ¡Completa el formulario, es gratis! 💼👨‍💼
         </h1>
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg">
@@ -159,7 +159,7 @@ function Candidato() {
           </div>
           <div className="mb-4">
             <label htmlFor="city" className="block font-bold mb-2">
-              Ciudad <span className="text-red-500 text-sm">*</span>
+              Ciudad <span className="text-red-500  font-serif text-sm">*</span>
             </label>
             <input
               type="text"
@@ -174,7 +174,7 @@ function Candidato() {
             </p>
           </div>
           <div className="mb-4">
-            <label htmlFor="description" className="block font-bold mb-2">
+            <label htmlFor="description" className="block   font-serif font-bold mb-2">
            Cuentanos mas sobre ti <span className="text-red-500 text-sm">*</span>
             </label>
             <textarea
@@ -189,14 +189,14 @@ function Candidato() {
             {salaryError && <p className="text-red-500">{salaryError}</p>}
           </div>
           <div className="mb-4">
-  <label htmlFor="sector" className="block font-bold mb-2">
+  <label htmlFor="sector" className="block  font-serif font-bold mb-2">
     Elige tu sector <span className="text-red-500 text-sm">*</span>
   </label>
   <select
     name="sector"
     value={form.sector}
     onChange={(e) => setForm({ ...form, sector: e.target.value })}
-    className="w-full border rounded-md py-2 px-3"
+    className="w-full  font-serif border rounded-md py-2 px-3"
   >
     <option value="">Selecciona tu sector</option>
     <option value="Comercio">Comercio</option>
@@ -207,7 +207,7 @@ function Candidato() {
   </select>
 </div>
           <div className="mb-4">
-            <label htmlFor="curriculum" className="block font-bold mb-2">
+            <label htmlFor="curriculum" className="block  font-serif font-bold mb-2">
               Link de tu curriculum en la nube  <span className="text-red-500 text-sm">*</span>
             </label>
             <input
@@ -220,7 +220,7 @@ function Candidato() {
             {salaryError && <p className="text-red-500">{salaryError}</p>}
           </div>
           <div className="mb-4">
-            <label htmlFor="phone" className="block font-bold mb-2">
+            <label htmlFor="phone" className="block  font-serif font-bold mb-2">
               Teléfono de contacto <span className="text-red-500 text-sm">*</span>
             </label>
             <PhoneInput
@@ -239,7 +239,7 @@ function Candidato() {
           <div className="flex justify-center items-center mb-4">
             <button
               type="submit"
-              className="bg-blue-500 hover-bg-blue-600 text-white font-bold py-2 px-4 rounded text-2xl"
+              className="bg-blue-500   font-serif hover-bg-blue-600 text-white font-bold py-2 px-4 rounded text-2xl"
             >
               Enviar
             </button>

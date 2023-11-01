@@ -63,6 +63,12 @@ function Form() {
     return isValid;
   };
 
+  const salaryRanges = [
+    '$1000 - $2000',
+    '$3000 - $5000',
+    '$7000 - $10000',
+  ];
+
   const handleMensajeChange = (e) => {
     const mensaje = e.target.value;
     if (mensaje.length <= limiteCaracteres) {
@@ -109,17 +115,19 @@ function Form() {
       }
     }
   };
+  
 
   return (
     <div className="bg-blue-100 min-h-screen">
       <div className="container mx-auto p-8">
-        <h1 className="text-2xl font-bold text-center mt-8 mb-4">
+        <h1 className="text-2xl font-mono font-bold text-center mt-8 mb-4">
           ¡Buscas Personal? ¡Completa el formulario es gratis! 💼👨‍💼
         </h1>
+        <h2 className='font-semibold font-sans'>Nuestros anuncios duran 24hs y luego se borran instantaneamente</h2>
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg">
           <div className="mb-4">
-            <label htmlFor="mensaje" className="block font-bold mb-2">
-              Aviso Laboral <span className='text-red-500 text-sm'>*obligatorio</span>
+            <label htmlFor="mensaje" className="block font-bold mb-2  font-serif">
+              Aviso Laboral <span className='text-red-500 text-sm '>*obligatorio</span>
             </label>
             <textarea
               name="content"
@@ -129,12 +137,12 @@ function Form() {
               className={`w-full h-32 border rounded-md py-2 px-3 ${errorMensaje && 'border-red-500'}`}
             ></textarea>
             {errorMensaje && <p className="text-red-500">{errorMensaje}</p>}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm font-sans text-gray-500">
               Caracteres escritos {caracteresEscritos}/{limiteCaracteres}
             </p>
           </div>
           <div className="mb-4">
-            <label htmlFor="telefono" className="block font-bold mb-2">
+            <label htmlFor="telefono" className="block font-bold mb-2 font-serif">
               Teléfono de contacto <span className='text-red-500 text-sm'>*obligatorio</span>
             </label>
             <PhoneInput
@@ -146,22 +154,28 @@ function Form() {
               className={`w-full border rounded-md py-2 px-3 ${salaryError && 'border-red-500'}`}
             />
             {errors && <p className="text-red-500">{errors}</p>}
-            <p className="text-sm text-gray-500">
+            <p className="text-sm font-sans text-gray-500">
               Caracteres escritos: {form.phone.length}/{limiteEmailTelefono}
             </p>
           </div>
           <div className="mb-4">
-            <label htmlFor="salary" className="block font-bold mb-2">
+            <label htmlFor="salary" className="block font-bold mb-2  font-serif">
           Expectativa Salarial <span className='text-red-500 text-sm'>*obligatorio</span>
             </label>
-            <input
-              name="salary"
-              type="number"
-              id="salary"
-              value={form.salary}
-              onChange={handleSalaryChange}
-              className={`w-full border rounded-md py-2 px-3 ${salaryError && 'border-red-500'}`}
-            />
+            <select
+        name="salary"
+        id="salary"
+        value={form.salary}
+        onChange={handleSalaryChange}
+        className={`w-full  font-serif border rounded-md py-2 px-3 ${salaryError && 'border-red-500'}`}
+      >
+        <option value="">Seleccione un rango</option>
+        {salaryRanges.map((range) => (
+          <option key={range} value={range}>
+            {range}
+          </option>
+        ))}
+      </select>
             {salaryError && <p className="text-red-500">{salaryError}</p>}
           </div>
           <div className="flex justify-center items-center mb-4">
