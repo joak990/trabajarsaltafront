@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = ({ name, fechadb, content, phone, salary }) => {
   return (
-    <div className="  bg-blue-200   rounded-3xl  shadow-xl p-6 h-full flex flex-col">
+    <div className="   rounded-3xl  shadow-xl p-6 h-full flex flex-col">
       <div className='flex justify-between '>
       <p className="text-gray-500 text-lg font-mono   mb-4"> {fechadb}</p>
       <div className='flex justify-center'>
