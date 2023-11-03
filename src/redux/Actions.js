@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ADD_MESSAGE, CHANGE_STATUS, GET_ALL_POST, GET_CANDIDATES, GET_CHATS, GET_MY_PRIVATE_CHAT, SET_ACTIVE_STATE } from './types';
+import { ADD_MESSAGE, CHANGE_STATUS, CHANGE_STATUS_READ, GET_ALL_POST, GET_CANDIDATES, GET_CHATS, GET_MY_PRIVATE_CHAT} from './types';
 import Swal from 'sweetalert2';
 
 export const postjob = (payload) => {
@@ -7,7 +7,7 @@ export const postjob = (payload) => {
     return async function () {
       try {
       console.log(payload);
-        const response = await axios.post("https://trabajarsaltaback.vercel.app/createpost", payload)
+        const response = await axios.post("http://localhost:3001/createpost", payload)
         
         console.log(response);
         if (response.data === false) {
@@ -96,7 +96,7 @@ export const postjob = (payload) => {
     return async function () {
       try {
       console.log(payload);
-        const response = await axios.post("https://trabajarsaltaback.vercel.app/sendermessages", payload)
+        const response = await axios.post("http://localhost:3001/sendermessages", payload)
         
         console.log(response);
   return response.data
@@ -128,7 +128,7 @@ export const postjob = (payload) => {
     return async function (dispatch) {
       try {
         // Construye la URL con el parámetro 'id'
-        const url = `https://trabajarsaltaback.vercel.app/getchats/${id}`;
+        const url = `http://localhost:3001/getchats/${id}`;
   
         // Realiza la solicitud GET con la URL construida
         const response = await axios.get(url);
@@ -193,6 +193,30 @@ export const postjob = (payload) => {
         
         return dispatch({
           type: CHANGE_STATUS,
+          payload: response.data,
+        });
+ 
+      } catch (error) {
+        // Error en la petición
+        console.error(error);
+        return { success: false, message: "Error de creacion de comentario" };
+      }
+    };
+    
+  };
+
+
+  export const changestatusread = (payload) => {
+
+    return async function (dispatch) {
+      try {
+      console.log(payload);
+        const response = await axios.post("http://localhost:3001/isread", payload)
+        
+        console.log(response);
+        
+        return dispatch({
+          type: CHANGE_STATUS_READ,
           payload: response.data,
         });
  

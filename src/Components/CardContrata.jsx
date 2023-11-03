@@ -3,7 +3,7 @@ import { FaEnvelope } from 'react-icons/fa'; // Importa el ícono de un sobre pa
 import ReactModal from 'react-modal'; // Importa ReactModal
 import { useDispatch } from 'react-redux';
 import { sendMessage } from '../redux/Actions';
-
+import Swal from 'sweetalert2';
 const CardContrata = ({ name, description, city, phone, curriculum, userid }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState('');
@@ -36,6 +36,12 @@ const data = {
   const handleSendMessage = () => {
 
      dispatch(sendMessage(data))
+     Swal.fire({
+      icon: 'success',
+      title: 'Se envio el mensaje al destinatario',
+      showCancelButton: true,
+      
+    })
     closeModal();
   };
 
@@ -72,13 +78,13 @@ const data = {
   className="fixed inset-0 flex items-center justify-center"
   overlayClassName="fixed inset-0 backdrop-blur-md "
 >
-        <div className="bg-white rounded-lg shadow-xl  p-6 md:w-[400px] md:h-[240px] ">
+        <div className="bg-white rounded-lg shadow-xl  p-6 md:w-[800px] md:h-[300px] ">
           <h2 className="text-xl font-semibold mb-4">Enviar Mensaje a {name}</h2>
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Escribe tu mensaje..."
-            className="w-full p-2 border border-gray-300 rounded-md mb-4"
+            className="w-full p-2 border h-[150px] from-cyan-300 border-gray-300 rounded-md mb-4"
           />
           <div className="flex justify-end">
             <button

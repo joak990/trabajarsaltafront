@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { postjob } from '../redux/Actions';
+import { getmychats, postjob } from '../redux/Actions';
 import Swal from 'sweetalert2';
 import PhoneInput from 'react-phone-number-input';
 
 import 'react-phone-number-input/style.css';
 function Form() {
- 
+  const dispatch = useDispatch();
+  const id = localStorage.getItem("id")
+  useEffect(() => {
+    dispatch(getmychats(id));
+  }, [dispatch, id]);  
+
   useEffect(() => {
     // Verificar si hay un 'id' en el localStorage
     const userId = localStorage.getItem('id');
@@ -20,6 +25,7 @@ function Form() {
     content: '',
     phone: '',
     salary: '',
+    sector: ''
   });
   const [salaryError, setSalaryError] = useState('');
   const [errorMensaje, setErrorMensaje] = useState('');
@@ -28,7 +34,7 @@ function Form() {
   const limiteCaracteres = 450;
   const limiteEmailTelefono = 22;
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
 
   const validarFormulario = () => {
     let isValid = true;
@@ -125,7 +131,7 @@ function Form() {
         </h1>
         <h2 className='font-semibold font-sans'>Nuestros anuncios duran 24hs y luego se borran instantaneamente</h2>
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg">
-          <div className="mb-4">
+          <div className="mt-10">
             <label htmlFor="mensaje" className="block font-bold mb-2  font-serif">
               Aviso Laboral <span className='text-red-500 text-sm '>*obligatorio</span>
             </label>
@@ -141,7 +147,24 @@ function Form() {
               Caracteres escritos {caracteresEscritos}/{limiteCaracteres}
             </p>
           </div>
-          <div className="mb-4">
+          <label htmlFor="mensaje" className="block font-bold mt-4  font-serif">
+             Selecciona el sector <span className='text-red-500 text-sm '>*obligatorio</span>
+            </label>
+          <select
+    name="sector"
+    value={form.sector}
+    onChange={(e) => setForm({ ...form, sector: e.target.value })}
+    className="w-full  font-serif border rounded-md py-2 px-3"
+  >
+    <option value="">Selecciona tu sector</option>
+    <option value="Comercio">Comercio</option>
+    <option value="Construcción">Construcción</option>
+    <option value="Educación">Educación</option>
+    <option value="Hotelería">Hotelería</option>
+    <option value="Agricultura">Agricultura</option>
+      <option value="Otros">Otros</option>
+  </select>
+          <div className="mt-10">
             <label htmlFor="telefono" className="block font-bold mb-2 font-serif">
               Teléfono de contacto <span className='text-red-500 text-sm'>*obligatorio</span>
             </label>
@@ -158,7 +181,7 @@ function Form() {
               Caracteres escritos: {form.phone.length}/{limiteEmailTelefono}
             </p>
           </div>
-          <div className="mb-4">
+          <div className="mt-10">
             <label htmlFor="salary" className="block font-bold mb-2  font-serif">
           Expectativa Salarial <span className='text-red-500 text-sm'>*obligatorio</span>
             </label>
@@ -178,7 +201,7 @@ function Form() {
       </select>
             {salaryError && <p className="text-red-500">{salaryError}</p>}
           </div>
-          <div className="flex justify-center items-center mb-4">
+          <div className="flex justify-center items-center mt-10">
             <button
               type="submit"
               className="bg-blue-500 hover-bg-blue-600 text-white font-bold py-2 px-4 rounded text-2xl"

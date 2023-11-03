@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getposts } from "../redux/Actions";
+import { getmychats, getposts } from "../redux/Actions";
 import Cards from "../Components/Cards";
 import Banner from "../Components/Banner";
 function Home() {
   const jobs = useSelector((state) => state.jobs);
-
-  const empleos = jobs.length;
   const dispatch = useDispatch();
+  const empleos = jobs.length;
+  const id = localStorage.getItem("id")
+  useEffect(() => {
+    dispatch(getmychats(id));
+  }, [dispatch, id]);
+
+
   useEffect(() => {
     dispatch(getposts());
   }, [dispatch]);

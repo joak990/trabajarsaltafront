@@ -4,3 +4,4 @@ export const GET_CHATS = "GET_CHATS"
 export const GET_MY_PRIVATE_CHAT = "GET_MY_PRIVATE_CHAT"
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const CHANGE_STATUS = 'CHANGE_STATUS';
+export const CHANGE_STATUS_READ = 'CHANGE_STATUS_READ';

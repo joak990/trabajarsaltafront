@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import CardsContrata from '../Components/CardsContrata';
-import { getcandidates } from '../redux/Actions';
+import { getcandidates, getmychats } from '../redux/Actions';
 import { useDispatch } from 'react-redux';
 
 function Contrata() {
   const dispatch = useDispatch();
   const [selectedFilter, setSelectedFilter] = useState(''); // Nuevo estado de filtro
+
+  const id = localStorage.getItem("id")
+  useEffect(() => {
+    dispatch(getmychats(id));
+  }, [dispatch, id]);
 
   useEffect(() => {
     dispatch(getcandidates());

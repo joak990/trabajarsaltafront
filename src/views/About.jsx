@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getmychats } from '../redux/Actions';
+import { useDispatch } from 'react-redux';
 
 function About() {
+  const id = localStorage.getItem("id")
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getmychats(id));
+  }, [dispatch, id]);
   return (
     <div className="bg-blue-100 min-h-screen">
       <div className="container mx-auto p-8">
