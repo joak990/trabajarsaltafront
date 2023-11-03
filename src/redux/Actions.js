@@ -7,7 +7,7 @@ export const postjob = (payload) => {
     return async function () {
       try {
       console.log(payload);
-        const response = await axios.post("http://localhost:3001/createpost", payload)
+        const response = await axios.post("https://trabajarsaltaback.vercel.app/createpost", payload)
         
         console.log(response);
         if (response.data === false) {
@@ -96,7 +96,7 @@ export const postjob = (payload) => {
     return async function () {
       try {
       console.log(payload);
-        const response = await axios.post("http://localhost:3001/sendermessages", payload)
+        const response = await axios.post("https://trabajarsaltaback.vercel.app/sendermessages", payload)
         
         console.log(response);
   return response.data
@@ -128,7 +128,7 @@ export const postjob = (payload) => {
     return async function (dispatch) {
       try {
         // Construye la URL con el parámetro 'id'
-        const url = `http://localhost:3001/getchats/${id}`;
+        const url = `https://trabajarsaltaback.vercel.app/getchats/${id}`;
   
         // Realiza la solicitud GET con la URL construida
         const response = await axios.get(url);
@@ -211,7 +211,7 @@ export const postjob = (payload) => {
     return async function (dispatch) {
       try {
       console.log(payload);
-        const response = await axios.post("http://localhost:3001/isread", payload)
+        const response = await axios.post("https://trabajarsaltaback.vercel.app/isread", payload)
         
         console.log(response);
         
