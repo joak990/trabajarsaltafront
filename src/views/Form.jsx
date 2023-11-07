@@ -25,7 +25,8 @@ function Form() {
     content: '',
     phone: '',
     salary: '',
-    sector: ''
+    sector: '',
+    departament:"Salta Capital"
   });
   const [salaryError, setSalaryError] = useState('');
   const [errorMensaje, setErrorMensaje] = useState('');
@@ -74,7 +75,8 @@ function Form() {
     '$3000 - $5000',
     '$7000 - $10000',
   ];
-
+  
+  
   const handleMensajeChange = (e) => {
     const mensaje = e.target.value;
     if (mensaje.length <= limiteCaracteres) {
@@ -117,20 +119,26 @@ function Form() {
       } else {
         // Si hay un 'id' en el localStorage, enviar el formulario
         dispatch(postjob(form));
-      
+      setForm({ // Cambiar esto si es necesario
+      content: '',
+      phone: '',
+      salary: '',
+      sector: '',
+      departament:"Salta Capital"})
       }
     }
   };
   
 
   return (
-    <div className="bg-blue-100 min-h-screen">
-      <div className="container mx-auto p-8">
+    <div className="bg-white min-h-screen   ">
+      <div className="p-2">
         <h1 className="text-2xl font-mono font-bold text-center mt-8 mb-4">
           ¡Buscas Personal? ¡Completa el formulario es gratis! 💼👨‍💼
         </h1>
-        <h2 className='font-semibold font-sans'>Nuestros anuncios duran 24hs y luego se borran instantaneamente</h2>
-        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg">
+        <h2 className='font-extralight font-sans'>Nuestros anuncios duran 24hs y luego se borran instantaneamente</h2>
+        <div className='w-full'>
+        <form onSubmit={handleSubmit} className="w-full md:max-w-3xl mx-auto p-8 bg-white rounded-lg shadow-lg">
           <div className="mt-10">
             <label htmlFor="mensaje" className="block font-bold mb-2  font-serif">
               Aviso Laboral <span className='text-red-500 text-sm '>*obligatorio</span>
@@ -147,6 +155,19 @@ function Form() {
               Caracteres escritos {caracteresEscritos}/{limiteCaracteres}
             </p>
           </div>
+          <label htmlFor="mensaje" className="block font-bold mt-4  font-serif">
+             Selecciona el departamento <span className='text-red-500 text-sm '>*obligatorio</span>
+            </label>
+          <select
+    name="sector"
+    value={form.departament}
+    onChange={(e) => setForm({ ...form, departament:"Salta Capital"})}
+    className="w-full  font-serif border rounded-md py-2 px-3"
+    defaultValue="Salta Capital"
+  >
+    
+    <option value="Salta Capital">Salta Capital</option>
+  </select>
           <label htmlFor="mensaje" className="block font-bold mt-4  font-serif">
              Selecciona el sector <span className='text-red-500 text-sm '>*obligatorio</span>
             </label>
@@ -210,6 +231,8 @@ function Form() {
             </button>
           </div>
         </form>
+        </div>
+       
       </div>
     </div>
   );

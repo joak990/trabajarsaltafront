@@ -1,84 +1,95 @@
 import React, { useState } from 'react';
-import { FaEnvelope } from 'react-icons/fa'; // Importa el ícono de un sobre para enviar un mensaje
-import ReactModal from 'react-modal'; // Importa ReactModal
+import { FaEnvelope } from 'react-icons/fa';
+import ReactModal from 'react-modal';
 import { useDispatch } from 'react-redux';
 import { sendMessage } from '../redux/Actions';
 import Swal from 'sweetalert2';
-const CardContrata = ({ name, description, city, phone, curriculum, userid }) => {
+
+const CardContrata = ({ name, description, city, curriculum, userid, sector }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [message, setMessage] = useState('');
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [iduser, setIdUser] = useState('');
 
   const handleViewCurriculum = () => {
     if (curriculum) {
-      window.open(curriculum, '_blank'); // Abre el enlace en una nueva pestaña
+      window.open(curriculum, '_blank');
     }
   };
 
   const openModal = (userId) => {
-
-    setIdUser(userId)
-   
+    setIdUser(userId);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const Myid =  localStorage?.getItem("id")
-const data = {
-  senderId:Myid,
-  receiverId:iduser,
-  content:message
-}
+
+  const Myid = localStorage?.getItem("id");
+  const data = {
+    senderId: Myid,
+    receiverId: iduser,
+    content: message
+  };
 
   const handleSendMessage = () => {
-
-     dispatch(sendMessage(data))
-     Swal.fire({
+    dispatch(sendMessage(data));
+    Swal.fire({
       icon: 'success',
-      title: 'Se envio el mensaje al destinatario',
+      title: 'Se envió el mensaje al destinatario',
       showCancelButton: true,
-      
-    })
+    });
     closeModal();
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-xl p-6 h-full flex flex-col">
-      <div className="mb-4">
-        <p className="font-semibold text-2xl text-start mb-2 border-gray-300">
-          {city}
-        </p>
-        
-        <h1 className="text-2xl font-bold mb-2">{name}</h1>
+    <div className="bg-white rounded-3xl shadow-xl p-6 h-full flex flex-col">
+      <div className="mb-4 flex justify-between">
+        <div>
+          <p className="font-extralight md:text-2xl  text-lg text-start mb-2 border-gray-300">
+            {city}
+          </p>
+          
+         
+        </div>
+        <div className="flex justify-center">
+          <h1 className="md:text-2xl md:mt-0 mt-10 text-lg font-bold mb-2">{name}</h1>
+          </div>
+        <p className="font-extralight md:text-2xl  text-lg text-start mb-2 border-gray-300">
+            {sector}
+          </p>
       </div>
 
-      <p className="text-gray-700 font-bold text-lg mb-4">{description}</p>
+      <div className="description-container ">
+        <p className="text-gray-700 font-bold md:text-2xl  text-lg " style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          {description}
+        </p>
+      </div>
+
       
-      <div className="mb-4">
         <h2 className="text-lg text-gray-500 mb-2"></h2>
-        <p className=" text-white rounded-sm text-base">
-          <button className="bg-slate-800 text-white rounded-sm" onClick={handleViewCurriculum}>
+        <p className="text-white rounded-sm text-base">
+         
+          <div className="flex mt-2 md:mt-20 justify-center">
+          <button className=" w-44 text-blue-600   rounded-sm" onClick={handleViewCurriculum}>
             Ver currículum
           </button>
-          <div className="flex mt-14 justify-center">
-          <button className="bg-blue-600 text-white rounded-full" onClick={() => openModal(userid)}>
-            <FaEnvelope size={24} /> {/* Icono de sobre para enviar un mensaje */}
-          </button>
-        </div>
+            <button className="bg-blue-600 text-white rounded-full" onClick={() => openModal(userid)}>
+              <FaEnvelope size={24} />
+            </button>
+          </div>
         </p>
-      </div>
+      
 
       <ReactModal
-  isOpen={isModalOpen}
-  onRequestClose={closeModal}
-  contentLabel="Enviar Mensaje"
-  className="fixed inset-0 flex items-center justify-center"
-  overlayClassName="fixed inset-0 backdrop-blur-md "
->
-        <div className="bg-white rounded-lg shadow-xl  p-6 md:w-[800px] md:h-[300px] ">
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Enviar Mensaje"
+        className="fixed inset-0 flex items-center justify-center"
+        overlayClassName="fixed inset-0 backdrop-blur-md"
+      >
+        <div className="bg-white rounded-lg shadow-xl p-6 md:w-[800px] md:h-[300px]">
           <h2 className="text-xl font-semibold mb-4">Enviar Mensaje a {name}</h2>
           <textarea
             value={message}
@@ -87,10 +98,7 @@ const data = {
             className="w-full p-2 border h-[150px] from-cyan-300 border-gray-300 rounded-md mb-4"
           />
           <div className="flex justify-end">
-            <button
-              className="bg-blue-500 text-white p-2 rounded-md mr-2"
-              onClick={() => handleSendMessage()}
-            >
+            <button className="bg-blue-500 text-white p-2 rounded-md mr-2" onClick={() => handleSendMessage()}>
               Enviar
             </button>
             <button className="bg-gray-400 text-white p-2 rounded-md" onClick={closeModal}>

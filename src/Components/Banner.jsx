@@ -50,7 +50,7 @@ const Banner = () => {
       </div>
 
       {/* <!--Carousel items--> */}
-      <div className="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+      <div className="relative w-full max-h-[600px] overflow-hidden after:clear-both after:block after:content-['']">
         {/* <!--First item--> */}
         <div
           className="relative float-left -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"

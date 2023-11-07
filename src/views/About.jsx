@@ -9,7 +9,7 @@ function About() {
     dispatch(getmychats(id));
   }, [dispatch, id]);
   return (
-    <div className="bg-blue-100 min-h-screen">
+    <div className=" min-h-screen">
       <div className="container mx-auto p-8">
         <h1 className="text-4xl font-bold text-center mb-6">Clasificados Diarios 📰</h1>
         <p className="text-lg text-center mb-8">

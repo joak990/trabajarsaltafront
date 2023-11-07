@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { app } from "../firebase";
-import logo from "./logo salta emplea.jpg"
+import logo from "./logo salta emplea.jpg";
 import {
   getAuth,
   signInWithPopup,
@@ -11,6 +11,7 @@ import {
   setPersistence,
   browserSessionPersistence,
 } from "firebase/auth";
+import videoBackground from "../assets/banner-images/saltaarg.mp4"; // Ruta al archivo de video
 
 import Swal from "sweetalert2";
 import { register_google } from "../redux/Actions";
@@ -20,8 +21,6 @@ function Home() {
   const dispatch = useDispatch();
   const provider = new GoogleAuthProvider();
   const firebaseAuth = getAuth(app);
-
-
 
   const handleLogin = async () => {
     await setPersistence(firebaseAuth, browserSessionPersistence);
@@ -58,30 +57,33 @@ function Home() {
         localStorage.setItem("name", response.name);
       }
     });
-  };
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-black">
-    
-      <div className="w-1/2 p-8 text-center">
-        <div className="flex justify-center mb-20">
-          <img className="rounded-full h-44" src={logo} alt="" />
+    <div className="flex h-screen  md:flex-row ">
+      <div className="w-full md:w-1/2 relative hidden md:block"> {/* Ocultar en dispositivos móviles */}
+        <video autoPlay muted loop className="w-full md:h-full object-cover absolute inset-0 z-10">
+          <source src={videoBackground} type="video/mp4" />
+          {/* Agrega más formatos de video si es necesario */}
+        </video>
+        <div className="absolute inset-0 bg-black opacity-30 z-20" />
+      </div>
+      <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-8 text-center bg-slate-900">
+        <div className="flex justify-center mb-4 md:mb-20">
+          <img className="rounded-full h-24 md:h-44" src={logo} alt="" />
         </div>
-   
-        <p className="text-xl  text-white font-semibold mb-20">
-          Tu plataforma laboral digital en Salta.
+        <p className="text-xl text-white font-semibold mb-4">
+          El portal de empleo de todos los salteños
         </p>
-        <p className="mt-4 text-white font-semibold">
+        <p className="text-white font-semibold">
           Inicia sesión para promocionarte como candidato o publicar tu oferta
           laboral.
         </p>
         <div className="flex justify-center mt-4">
-          
           <button
             onClick={handleLogin}
-            className="bg-blue-600 text-white w-60 py-3 px-6 rounded-lg flex items-center space-x-2 text-cent hover:bg-blue-900"
+            className="bg-white text-black w-full h-12 py-3 px-6 rounded-lg flex items-center space-x-2 text-center"
           >
-           
             <FcGoogle size={40} className="text-2xl" />
             <span> Iniciar Sesión</span>
           </button>

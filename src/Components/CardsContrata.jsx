@@ -33,10 +33,11 @@ function CardsContrata({ filter }) {
         {candidatosFiltrados
           ?.slice((pagina - 1) * porpagina, pagina * porpagina)
           ?.map((candidato, index) => (
-            <div className="w-[200px] h-[300px] sm:w-1/2 px-2 mb-4 mt-4 mx-auto" key={index}>
+            <div className="w-[370px] h-[300px]  sm:w-1/2 px-2 mb-4 mt-4 mx-auto" key={index}>
               <CardContrata
                 name={candidato.name}
                 city={candidato.city}
+                sector={candidato.sector}
                 description={candidato.description}
                 phone={candidato.phone}
                 curriculum={candidato.curriculum}
