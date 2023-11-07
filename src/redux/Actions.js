@@ -54,7 +54,7 @@ export const postjob = (payload) => {
         }
       } 
       catch (error) {
-        // Manejo de errores
+       console.log(error);
       }
     };
   };
