@@ -16,7 +16,7 @@ function Candidato() {
     description: '',
     phone: '',
     sector: '',
-    curriculum: null,
+   
     salary: '',
     
      // Agrega un nuevo estado para el enlace del PDF
@@ -31,7 +31,7 @@ function Candidato() {
   const [errors, setErrors] = useState('');
   const [salaryError, setSalaryError] = useState('');
   const [caracteresEscritos, setCaracteresEscritos] = useState(0);
-  const limiteCaracteres = 55;
+  const limiteCaracteres = 60;
   const limiteEmailTelefono = 22;
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -242,19 +242,6 @@ className="w-full  font-serif border rounded-md py-2 px-3"
 <option value="Hotelería">Hotelería</option>
 <option value="Agricultura">Agricultura</option>
 </select>
-</div>
-<div className="mb-4">
-  <label htmlFor="curriculum" className="block  font-serif font-bold mb-2">
-    Link de tu curriculum en la nube  <span className="text-red-500 text-sm">*</span>
-  </label>
-  <input
-type="text"
-name="curriculum"
-value={form.curriculum}
-onChange={(e) => setForm({ ...form, curriculum: e.target.value })}
-className={`w-full border rounded-md py-2 px-3 ${salaryError && 'border-red-500'}`}
-/>
-  {salaryError && <p className="text-red-500">{salaryError}</p>}
 </div>
 <div className="mb-4">
   <label htmlFor="phone" className="block  font-serif font-bold mb-2">

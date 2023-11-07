@@ -72,9 +72,7 @@ const CardContrata = ({ name, description, city, curriculum, userid, sector }) =
         <p className="text-white rounded-sm text-base">
          
           <div className="flex mt-2 md:mt-20 justify-center">
-          <button className=" w-44 text-blue-600   rounded-sm" onClick={handleViewCurriculum}>
-            Ver currículum
-          </button>
+         
             <button className="bg-blue-600 text-white rounded-full" onClick={() => openModal(userid)}>
               <FaEnvelope size={24} />
             </button>
@@ -82,13 +80,22 @@ const CardContrata = ({ name, description, city, curriculum, userid, sector }) =
         </p>
       
 
-      <ReactModal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        contentLabel="Enviar Mensaje"
-        className="fixed inset-0 flex items-center justify-center"
-        overlayClassName="fixed inset-0 backdrop-blur-md"
-      >
+        <ReactModal
+  isOpen={isModalOpen}
+  onRequestClose={closeModal}
+  contentLabel="Enviar Mensaje"
+  className={{
+    base: 'fixed inset-0 flex items-center justify-center',
+    afterOpen: 'fixed top-0 left-0 right-0 bottom-0 z-50', // Set a higher z-index value
+    beforeClose: '',
+  }}
+  overlayClassName={{
+    base: 'fixed inset-0 backdrop-blur-md z-40', // Set a higher z-index value
+    afterOpen: '',
+    beforeClose: '',
+  }}
+>
+
         <div className="bg-white rounded-lg shadow-xl p-6 md:w-[800px] md:h-[300px]">
           <h2 className="text-xl font-semibold mb-4">Enviar Mensaje a {name}</h2>
           <textarea

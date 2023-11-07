@@ -47,7 +47,7 @@ const Navbar = () => {
             Quiero ser Candidato
           </Link>
           <Link to="/contrata" className="text-white  text-sm font-bold">
-            Contrata Candidatos
+          Encuentra Candidatos
           </Link>
           <Link to="/form" className="text-white text-sm font-bold">
             Publica tu Anuncio
@@ -109,24 +109,25 @@ const Navbar = () => {
                 Inicio
               </Link>
               <Link
+                to="/contrata"
+                className="text-white text-base font-medium block hover:text-gray-300 ml-4"
+              >
+              Encuentra Candidatos
+              </Link>
+              <Link
                 to="/about"
                 className="text-white text-base font-medium block hover:text-gray-300 ml-4"
               >
                  Acerca de Nosotros
               </Link>
-              <Link
-                to="/contrata"
-                className="text-white text-base font-medium block hover:text-gray-300 ml-4"
-              >
-              Contrata Candidatos
-              </Link>
+              
               <Link
                 to="/form"
                 className="text-white text-base font-medium block hover:text-gray-300 ml-4"
               >
                 Publica tu Anuncio
               </Link>
-              <Link to="/form-candidato" className="text-white  text-sm font-bold">
+              <Link to="/form-candidato" className="text-white text-base font-medium block hover:text-gray-300 ml-4">
             Quiero ser Candidato
           </Link>
               <Link
